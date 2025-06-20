@@ -102,10 +102,11 @@
 
         async function applyToWalk(requestId) {
           const walkerId = await getCurrentUser(); // 获取用户 ID
-    if (!walkerId) {
-          error.value = 'User not logged in';
-          return;
-        }
+
+          if (!walkerId) {
+            error.value = 'User not logged in';
+            return;
+          }
 
         async function loadDogs() {
           try {
