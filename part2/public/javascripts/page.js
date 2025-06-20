@@ -231,7 +231,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 async function loadAllDogs() {
   try {
-    const res = await fetch('/api/dogs');
+    const res = await fetch('http://localhost:3000/api/dogs');
     const dogs = await res.json();
 
     const tbody = document.getElementById('dogsBody');
