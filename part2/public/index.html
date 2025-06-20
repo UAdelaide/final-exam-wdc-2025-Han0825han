@@ -40,6 +40,13 @@
   <tbody id="dogsBody"></tbody>
 </table>
 
+<script src="/javascripts/page.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    loadAllDogs();
+  });
+</script>
+
   <script>
     const { createApp } = Vue;
     createApp({

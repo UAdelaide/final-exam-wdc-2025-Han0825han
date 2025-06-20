@@ -229,3 +229,29 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+async function loadAllDogs() {
+  try {
+    const res = await fetch('/api/dogs');
+    const dogs = await res.json();
+
+    const tbody = document.getElementById('dogsBody');
+    tbody.innerHTML = '';
+
+    for (let dog of dogs) {
+      const photoRes = await fetch('https://dog.ceo/api/breeds/image/random');
+      const photoData = await photoRes.json();
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${dog.dog_id}</td>
+        <td>${dog.name}</td>
+        <td>${dog.size}</td>
+        <td>${dog.owner_id}</td>
+        <td><img src="${photoData.message}" alt="dog photo" width="100"></td>
+      `;
+      tbody.appendChild(tr);
+    }
+  } catch (err) {
+    console.error('Failed to load dog list:', err);
+  }
+}
