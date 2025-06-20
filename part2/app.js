@@ -25,15 +25,6 @@ app.use('/api', userRoutes);
 app.use('/', loginRoutes);
 
 
-window.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const meRes = await fetch('/api/users/me');
-    const me = await meRes.json();
-    console.log('当前 session 用户:', me);
-  } catch (e) {
-    console.error('获取 session 用户失败:', e);
-  }
-});
 // Export the app
 module.exports = app;
 
