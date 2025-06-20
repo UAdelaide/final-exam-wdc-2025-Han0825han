@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 });
 
 app.get('/api/dogs', async (req, res) => {
-  console.log("📢 路由 /api/dogs 被访问了");
+  console.log("GET /api/dogs was called");
 
   try {
     const [rows] = await pool.query(`
