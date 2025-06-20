@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
 // ✅ Logout route: destroys session and redirects to login form
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
