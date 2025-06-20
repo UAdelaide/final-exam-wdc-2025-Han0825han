@@ -17,14 +17,12 @@ router.post('/login', async (req, res) => {
 
     const user = rows[0];
 
-    // 将用户信息存入 session
     req.session.user = {
       id: user.user_id,
       username: user.username,
       role: user.role
     };
 
-    // 根据用户角色跳转到对应页面
     if (user.role === 'owner') {
       return res.redirect('/owner-dashboard.html');
     }
@@ -41,19 +39,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// GET /logout: 注销 session 并跳转回主页
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Failed to destroy session:', err);
       return res.status(500).send('Logout failed');
     }
-    res.clearCookie('connect.sid'); // 默认的 session cookie 名
-    return res.redirect('/index.html'); // 回到首页（登录页）
+    res.clearCookie('connect.sid');
+    return res.redirect('/index.html');
   });
 });
 
-// GET /api/users/mydogs: 获取当前 owner 拥有的所有狗
 router.get('/mydogs', async (req, res) => {
   try {
     if (!req.session.user || req.session.user.role !== 'owner') {
