@@ -21,7 +21,7 @@ const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 app.use('/api/walks', walkRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api', userRoutes);
 app.use('/', loginRoutes);
 
 // Export the app
