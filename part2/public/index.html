@@ -26,6 +26,19 @@
     <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
+<h2>All Registered Dogs</h2>
+<table class="table" id="dogsTable">
+  <thead>
+    <tr>
+      <th>Dog ID</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Owner ID</th>
+      <th>Photo</th>
+    </tr>
+  </thead>
+  <tbody id="dogsBody"></tbody>
+</table>
 
   <script>
     const { createApp } = Vue;
