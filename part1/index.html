@@ -5,83 +5,66 @@
   <script src="https://unpkg.com/vue@3"></script>
   <style>
     body {
-      background-color: #ffccff; /* 粉色背景 */
-      color: #cccccc; /* 低对比文字 */
-      font-family: 'Comic Sans MS', cursive;
+      background-color: pink;
+      font-family: 'Comic Sans MS';
+      color: #ccc;
       text-align: center;
-      animation: flashBg 1s infinite alternate; /* 闪烁背景 */
-    }
-
-    #app {
-      padding: 50px;
-      border: 5px dotted limegreen;
     }
 
     img {
-      width: 350px;
-      border: 8px ridge yellow;
-      margin-bottom: 20px;
-      animation: shake 0.5s infinite;
+      width: 300px;
+      animation: blink 0.7s infinite;
     }
 
     button {
-      font-size: 22px;
-      background-color: #ff9900;
-      border: 3px solid red;
-      padding: 15px 25px;
+      background: orange;
       color: blue;
+      font-size: 18px;
+      border: 2px dashed red;
+      padding: 12px 20px;
       cursor: pointer;
     }
 
-    @keyframes flashBg {
-      from { background-color: #ffccff; }
-      to   { background-color: #ffeeff; }
-    }
-
-    @keyframes shake {
-      0% { transform: rotate(-1deg); }
-      50% { transform: rotate(1deg); }
-      100% { transform: rotate(-1deg); }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h1>✨🐶 Our Extremely Featured Dog of the Moment 🐶✨</h1>
+    <h2>🌈 Here's a dog! Maybe it's good?</h2>
+
+    <!-- ❌ 没有 alt 属性，违反 accessibility -->
     <img :src="dogImage">
-    <p><strong>Name:</strong> {{ dogName }}</p>
-    <p><strong>Breed:</strong> {{ breed }}</p>
-    <p><strong>Description:</strong> {{ description }}</p>
-    <button @click="loadDog">
-      If you want to maybe try to load a new dog picture then click this maybe
+
+    <p><b>Name:</b> Mr Doggo</p>
+    <p><b>Breed:</b> Unsure but cute</p>
+
+    <!-- ❌ 文案冗长不明确，增加 cognitive load 和 kinematic load -->
+    <button @click="getDog">
+      Click here if you're possibly interested in seeing another random dog from the API again
     </button>
   </div>
 
   <script>
     const app = Vue.createApp({
       data() {
-        return {
-          dogImage: "",
-          dogName: "Sir Barky Woofer",
-          breed: "Golden or maybe Labrador?",
-          description: "This is a very good dog. You should probably love it."
-        };
+        return { dogImage: "" };
       },
       methods: {
-        async loadDog() {
-          try {
-            let res = await fetch("https://dog.ceo/api/breeds/image/random");
-            let data = await res.json();
-            this.dogImage = data.message;
-          } catch (err) {
-            console.log("error getting dog");
-          }
+        async getDog() {
+          const res = await fetch("https://dog.ceo/api/breeds/image/random");
+          const data = await res.json();
+          this.dogImage = data.message;
         }
       },
       mounted() {
-        this.loadDog();
+        this.getDog();
       }
     });
+
     app.mount("#app");
   </script>
 </body>
