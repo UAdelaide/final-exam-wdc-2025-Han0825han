@@ -15,6 +15,8 @@ const pool = mysql.createPool({
 });
 
 app.get('/api/dogs', async (req, res) => {
+  console.log("📢 路由 /api/dogs 被访问了");
+
   try {
     const [rows] = await pool.query(`
       SELECT d.name AS dog_name, d.size, u.username AS owner_username
@@ -27,6 +29,7 @@ app.get('/api/dogs', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
+
 
 app.get('/', (req, res) => {
   res.send('✅ Express is running!');
