@@ -59,7 +59,7 @@ router.get('/mydogs', async (req, res) => {
   if (!req.session.user || req.session.user.role !== 'owner') {
     return res.status(403).json({ error: 'Not logged in or not owner' });
   }
-
+console.log("🐶 当前 session 用户：", req.session.user);
   try {
     const [dogs] = await db.query(
       'SELECT dog_id, name FROM Dogs WHERE owner_id = ?',
