@@ -36,13 +36,11 @@
   <div id="app">
     <h2>🌈 Here's a dog! Maybe it's good?</h2>
 
-    <!-- ❌ 没有 alt 属性，违反 accessibility -->
     <img :src="dogImage">
 
     <p><b>Name:</b> Mr Doggo</p>
     <p><b>Breed:</b> Unsure but cute</p>
 
-    <!-- ❌ 文案冗长不明确，增加 cognitive load 和 kinematic load -->
     <button @click="getDog">
       Click here if you're possibly interested in seeing another random dog from the API again
     </button>
