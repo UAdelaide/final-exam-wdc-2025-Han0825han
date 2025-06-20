@@ -52,11 +52,11 @@
             if (!res.ok) throw new Error('Failed to get current user');
             const data = await res.json();
             return data.id;
-  } catch (err) {
-    error.value = 'Unable to get user info';
-    return null;
-  }
-}
+          } catch (err) {
+            error.value = 'Unable to get user info';
+            return null;
+          }
+        }
 
         async function loadWalkRequests() {
           try {
