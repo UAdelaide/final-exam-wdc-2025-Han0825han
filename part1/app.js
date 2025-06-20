@@ -15,7 +15,6 @@ const pool = mysql.createPool({
 });
 
 app.get('/api/dogs', async (req, res) => {
-  console.log("GET /api/dogs was called");
 
   try {
     const [rows] = await pool.query(`
@@ -73,12 +72,6 @@ app.get('/api/walkers/summary', async (req, res) => {
   }
 });
 
-
-
-
-app.get('/', (req, res) => {
-  res.send('✅ Express is running!');
-});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
