@@ -72,6 +72,10 @@ app.get('/api/walkers/summary', async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('✅ Express is running!');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
