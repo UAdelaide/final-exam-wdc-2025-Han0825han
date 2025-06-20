@@ -229,14 +229,3 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-// Get current logged-in user
-async function getCurrentUser() {
-  try {
-    const res = await fetch('/api/users/me');
-    const data = await res.json();
-    return data.id; // Assuming backend returns { id, username, role }
-  } catch (err) {
-    console.error('Failed to get current user', err);
-    return null;
-  }
-}
