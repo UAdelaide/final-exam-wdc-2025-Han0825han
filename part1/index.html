@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
   <title>Dog of the Day</title>
-  <!-- 引入 Vue 3 -->
   <script src="https://unpkg.com/vue@3"></script>
   <style>
     body {
-      background-color: #ff00ff; /* 刺眼背景 */
-      color: yellow;
-      font-size: 24px;
-      font-family: 'Comic Sans MS', cursive;
-      animation: blink 1s step-start infinite;
+      font-family: Comic Sans MS;
+      background: pink;
+      color: lightgray; /* 可访问性差：对比度低 */
     }
-    @keyframes blink {
-      50% { opacity: 0; }
+    .dog-info {
+      padding: 50px;
+      border: 5px dotted green;
     }
     button {
-      font-size: 2em;
-      padding: 20px;
-      margin-top: 30px;
-    }
-    img {
-      width: 300px;
-      height: auto;
-      border: 10px dashed red;
+      background: yellow;
+      font-size: 25px;
+      cursor: crosshair;
     }
   </style>
 </head>
 <body>
-  <div id="app">
-    <h1 @click="fetchDog">🐶 D0G 0F TH3 D4Y! 🐾</h1>
-    <img :src="dogImage" alt="A random dog" />
-    <p>Name: {{ dogName }}</p>
-    <p>Breed: {{ breed }}</p>
-    <p>Description: {{ description }}</p>
-    <button @click="fetchDog">Click me 1000x to get a dog 🐕</button>
+  <div id="app" class="dog-info">
+    <h1>{{ dogName }}</h1>
+    <img :src="dogImage" width="400">
+    <p>{{ breed }}</p>
+    <p>{{ description }}</p>
+    <button @click="fetchDog">Click Here to Load Another Random Dog Image Now Immediately!</button>
   </div>
 
   <script>
-    const { createApp } = Vue;
-
-    createApp({
+    Vue.createApp({
       data() {
         return {
-          dogImage: '',
-          dogName: 'Mr. Barky von Woofington III',
-          breed: 'Very Confused Retriever',
-          description: 'A very good dog who might also be a cat.'
+          dogName: 'Sir Barkington the Third',
+          breed: 'Possibly part corgi, maybe not',
+          description: 'This is a very amazing dog and you should look at it closely and for a long time.',
+          dogImage: ''
         };
       },
       methods: {
@@ -56,8 +45,8 @@
             const res = await fetch('https://dog.ceo/api/breeds/image/random');
             const data = await res.json();
             this.dogImage = data.message;
-          } catch (error) {
-            console.error('🐶 Failed to load dog image:', error);
+          } catch (err) {
+            console.log('Error loading dog image');
           }
         }
       },
