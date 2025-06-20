@@ -13,7 +13,8 @@ VALUES
 ('Max', 'medium', (SELECT user_id FROM Users WHERE username = 'alice123')),
 ('Bella', 'small', (SELECT user_id FROM Users WHERE username = 'carol123')),
 ('Rocky', 'large', (SELECT user_id FROM Users WHERE username = 'alice123')),
-('Luna', 'medium', (SELECT user_id FROM Users WHERE username = 'emilyowner')),
+('Luna', 'medium', (SELECT user_id FR
+OM Users WHERE username = 'emilyowner')),
 ('Charlie', 'small', (SELECT user_id FROM Users WHERE username = 'carol123'));
 
 -- Insert 5 walk requests
