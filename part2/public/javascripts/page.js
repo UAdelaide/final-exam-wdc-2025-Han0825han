@@ -211,3 +211,22 @@ function logout(){
     xmlhttp.send();
 
 }
+
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('/api/users/mydogs');
+    const dogs = await res.json();
+
+    const select = document.getElementById('dogSelect');
+
+    dogs.forEach(dog => {
+      const option = document.createElement('option');
+      option.value = dog.dog_id; 
+      option.textContent = dog.name; // 显示的是狗的名字
+      select.appendChild(option);
+    });
+  } catch (err) {
+    console.error('🐶 Failed to load dog list:', err);
+  }
+});
+
