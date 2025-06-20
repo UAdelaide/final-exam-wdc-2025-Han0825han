@@ -101,9 +101,8 @@
 
 
         async function applyToWalk(requestId) {
-        const walkerId = await getCurrentUser(); // 获取用户 ID
-
-        if (!walkerId) {
+          const walkerId = await getCurrentUser(); // 获取用户 ID
+    if (!walkerId) {
           error.value = 'User not logged in';
           return;
         }
