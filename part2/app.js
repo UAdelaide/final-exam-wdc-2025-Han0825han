@@ -4,8 +4,6 @@ const session = require('express-session');
 require('dotenv').config();
 
 const app = express();
-const loginRoutes = require('./routes/loginRoutes');
-app.use('/', loginRoutes);
 
 
 // Middleware
