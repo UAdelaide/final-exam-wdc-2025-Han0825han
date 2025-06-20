@@ -8,45 +8,56 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body class="bg-light">
-  <form action="/login" method="POST">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+  <div class="container mt-5 mb-4">
+    <h2 class="mb-3">Login</h2>
+    <form action="/login" method="POST" class="row g-3">
+      <div class="col-md-4">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </div>
+    </form>
+  </div>
 
-  <button type="submit">Log In</button>
-</form>
-
-
-  <div id="app" class="container py-5">
+  <div id="app" class="container py-4">
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
     <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
-<h2>All Registered Dogs</h2>
-<table class="table" id="dogsTable">
-  <thead>
-    <tr>
-      <th>Dog ID</th>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Owner ID</th>
-      <th>Photo</th>
-    </tr>
-  </thead>
-  <tbody id="dogsBody"></tbody>
-</table>
 
-<script src="/javascripts/page.js"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    loadAllDogs();
-  });
-</script>
+  <div class="container mb-5">
+    <h2>All Registered Dogs</h2>
+    <table class="table" id="dogsTable">
+      <thead>
+        <tr>
+          <th>Dog ID</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Owner ID</th>
+          <th>Photo</th>
+        </tr>
+      </thead>
+      <tbody id="dogsBody"></tbody>
+    </table>
+  </div>
 
+  <script src="/javascripts/page.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      loadAllDogs();
+    });
+  </script>
+
+  <!-- Vue 欢迎语 -->
   <script>
     const { createApp } = Vue;
     createApp({
