@@ -5,43 +5,47 @@
   <script src="https://unpkg.com/vue@3"></script>
   <style>
     body {
-      background-color: #ffe4e1;
+      background-color: pink;
       font-family: 'Comic Sans MS';
-      color: #222;
+      color: #ccc;
       text-align: center;
     }
 
     img {
       width: 300px;
-      animation: blink 1s infinite;
+      animation: blink 0.7s infinite;
     }
 
     button {
       background: orange;
-      color: black;
-      font-size: 16px;
-      border: 1px solid red;
-      padding: 10px 16px;
+      color: blue;
+      font-size: 18px;
+      border: 2px dashed red;
+      padding: 12px 20px;
       cursor: pointer;
     }
 
     @keyframes blink {
       0% { opacity: 1; }
-      50% { opacity: 0.2; }
+      50% { opacity: 0.3; }
       100% { opacity: 1; }
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h2>Dog of the Day</h2>
+    <h2>🌈 Here's a dog! Maybe it's good?</h2>
 
-    <img :src="dogImage" alt="Random dog photo">
+    <!-- ❌ 没有 alt 属性，违反 accessibility -->
+    <img :src="dogImage">
 
-    <p><strong>Name:</strong> Mr Doggo</p>
-    <p><strong>Breed:</strong> Unknown</p>
+    <p><b>Name:</b> Mr Doggo</p>
+    <p><b>Breed:</b> Unsure but cute</p>
 
-    <button @click="getDog">Get New Dog</button>
+    <!-- ❌ 文案冗长不明确，增加 cognitive load 和 kinematic load -->
+    <button @click="getDog">
+      Click here if you're possibly interested in seeing another random dog from the API again
+    </button>
   </div>
 
   <script>
