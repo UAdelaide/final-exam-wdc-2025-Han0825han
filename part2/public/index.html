@@ -9,21 +9,24 @@
 </head>
 <body class="bg-light">
 
-  <div class="container mt-5 mb-4">
-    <h2 class="mb-3">Login</h2>
-    <form action="/login" method="POST" class="row g-3">
-      <div class="col-md-4">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" name="username" class="form-control" required>
-      </div>
-      <div class="col-md-4">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Log In</button>
-      </div>
-    </form>
+  <div class="d-flex justify-content-center mt-5">
+    <div style="width: 400px;">
+      <h1 class="mb-4 text-primary text-center">Welcome to the Dog<br>Walking Service!</h1>
+
+      <form action="/login" method="POST" class="card card-body shadow-sm bg-white">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input id="username" name="username" type="text" class="form-control" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input id="password" name="password" type="password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Log In</button>
+      </form>
+    </div>
   </div>
 
   <div id="app" class="container py-4">
