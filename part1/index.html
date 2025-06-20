@@ -1,59 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Dog of the Day</title>
-  <script src="https://unpkg.com/vue@3"></script>
-  <style>
-    body {
-      font-family: Comic Sans MS;
-      background: pink;
-      color: lightgray;
-    }
-    .dog-info {
-      padding: 50px;
-      border: 5px dotted green;
-    }
-    button {
-      background: yellow;
-      font-size: 25px;
-      cursor: crosshair;
-    }
-  </style>
-</head>
-<body>
-  <div id="app" class="dog-info">
-    <h1>{{ dogName }}</h1>
-    <img :src="dogImage" width="400">
-    <p>{{ breed }}</p>
-    <p>{{ description }}</p>
-    <button @click="fetchDog">Click Here to Load Another Random Dog Image Now Immediately!</button>
-  </div>
-
-  <script>
-    Vue.createApp({
-      data() {
-        return {
-          dogName: 'Sir Barkington the Third',
-          breed: 'Possibly part corgi, maybe not',
-          description: 'This is a very amazing dog and you should look at it closely and for a long time.',
-          dogImage: ''
-        };
-      },
-      methods: {
-        async fetchDog() {
-          try {
-            const res = await fetch('https://dog.ceo/api/breeds/image/random');
-            const data = await res.json();
-            this.dogImage = data.message;
-          } catch (err) {
-            console.log('Error loading dog image');
-          }
-        }
-      },
-      mounted() {
-        this.fetchDog();
+<html>
+  <head>
+    <title>Dog of the Day Page</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      body {
+        background-color: pink;
+        color: lightgrey;
+        font-family: cursive;
       }
-    }).mount('#app');
-  </script>
-</body>
+      #app {
+        padding: 40px;
+        border: 4px dashed orange;
+        text-align: center;
+      }
+      button {
+        font-size: 22px;
+        background: yellow;
+        padding: 10px;
+        border: none;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ dogName }}</h2>
+      <img :src="dogImage" width="350">
+      <p>{{ breed }}</p>
+      <p>{{ description }}</p>
+      <button @click="getDog">load new dog!!</button>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            dogName: "Mr. Barky",
+            breed: "unsure maybe golden",
+            description: "nice dog. look at it.",
+            dogImage: ""
+          }
+        },
+        methods: {
+          async getDog() {
+            let res = await fetch("https://dog.ceo/api/breeds/image/random");
+            let data = await res.json();
+            this.dogImage = data.message;
+          }
+        },
+        mounted() {
+          this.getDog();
+        }
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>
