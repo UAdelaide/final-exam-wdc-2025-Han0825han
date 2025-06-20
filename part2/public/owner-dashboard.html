@@ -103,6 +103,16 @@
             console.error(' Failed to load dog list:', err);
           }
         }
+        async function loadWalks() {
+          try {
+            const res = await fetch('/api/walks/myrequests');
+            const data = await res.json();
+            walks.value = data;
+          } catch (err) {
+    console.error('❌ Failed to load walk requests:', err);
+  }
+}
+
 
 
         async function submitWalkRequest() {
