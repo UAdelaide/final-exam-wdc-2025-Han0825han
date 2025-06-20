@@ -89,11 +89,11 @@
 
         async function getCurrentUser() {
           try {
-          const res = await fetch('/api/users/me');
-          const data = await res.json();
-          return data.id;
-        } catch (err) {
-          console.error('Failed to get current user', err);
+            const res = await fetch('/api/users/me');
+            const data = await res.json();
+            return data.id;
+          } catch (err) {
+            console.error('Failed to get current user', err);
           return null;
         }
       }
