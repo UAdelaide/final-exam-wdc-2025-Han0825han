@@ -216,11 +216,7 @@ function logout(){
 window.addEventListener('DOMContentLoaded', async () => {
   try {
     const res = await fetch('/api/users/mydogs');
-    // 如果没有登录或不是 owner，会返回 403
-    if (!res.ok) {
-      console.warn('🐶 /api/users/mydogs 接口失败，状态码:', res.status);
-      return;
-    }
+
     const dogs = await res.json();
 
     const select = document.getElementById('dogSelect');
