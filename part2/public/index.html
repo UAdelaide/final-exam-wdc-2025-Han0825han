@@ -8,32 +8,24 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body class="bg-light">
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form action="/login" method="POST" class="card p-4 shadow-sm bg-white">
-        <h2 class="text-center mb-4 text-primary">Welcome to the Dog Walking Service!</h2>
+  <form action="/login" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
 
-        <!-- ✅ 用户名输入框 -->
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" id="username" name="username" class="form-control" required>
-        </div>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
 
-        <!-- ✅ 密码输入框 -->
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" name="password" class="form-control" required>
-        </div>
+  <button type="submit">Log In</button>
+</form>
 
-        <!-- ✅ 登录按钮 -->
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Log In</button>
-        </div>
-      </form>
-    </div>
+
+  <div id="app" class="container py-5">
+    <h1 class="mb-4 text-primary">{{ message }}</h1>
+    <p class="lead">Connect with trusted walkers for your beloved dog!</p>
+
+    <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
+    <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
-</div>
 <h2>All Registered Dogs</h2>
 <table class="table" id="dogsTable">
   <thead>
