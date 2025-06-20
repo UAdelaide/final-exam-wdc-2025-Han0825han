@@ -94,9 +94,11 @@
             return data.id;
           } catch (err) {
             console.error('Failed to get current user', err);
-          return null;
+            return null;
+          }
         }
-      }
+
+        
 
         async function loadWalks() {
           try {
