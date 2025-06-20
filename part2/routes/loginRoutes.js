@@ -11,46 +11,49 @@ router.post('/login', async (req, res) => {
       [username, password]
     );
 
-    if (rows.length === 1) {
-      const user = rows[0];
-
-      req.session.user = {
-        id: user.user_id,
-        username: user.username,
-        role: user.role
-      };
-
-      if (user.role === 'owner') {
-        res.redirect('/owner-dashboard.html');
-      } else {
-        res.redirect('/walker-dashboard.html');
-      }
-    } else {
-      res.send('❌ Invalid credentials');
+    if (rows.length !== 1) {
+      return res.status(401).send('Invalid username or password');
     }
+
+    const user = rows[0];
+
+    // 将用户信息存入 session
+    req.session.user = {
+      id: user.user_id,
+      username: user.username,
+      role: user.role
+    };
+
+    // 根据用户角色跳转到对应页面
+    if (user.role === 'owner') {
+      return res.redirect('/owner-dashboard.html');
+    }
+
+    if (user.role === 'walker') {
+      return res.redirect('/walker-dashboard.html');
+    }
+
+    // 非法角色处理
+    return res.status(403).send('Unknown role');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Server error');
+    return res.status(500).send('Server error during login');
   }
 });
 
-// Logout route: destroy session, clear cookie, and redirect to login page
+// GET /logout: 注销 session 并跳转回主页
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      // Log server-side error and inform user
       console.error('Failed to destroy session:', err);
       return res.status(500).send('Logout failed');
     }
-
-    // Clear cookie and redirect to login form
-    res.clearCookie('connect.sid'); // 'connect.sid' is default session cookie name
-    return res.redirect('/index.html'); // redirect to login page
+    res.clearCookie('connect.sid'); // 默认的 session cookie 名
+    return res.redirect('/index.html'); // 回到首页（登录页）
   });
 });
 
-
-// GET /api/users/mydogs - get dogs owned by logged-in user
+// GET /api/users/mydogs: 获取当前 owner 拥有的所有狗
 router.get('/mydogs', async (req, res) => {
   try {
     if (!req.session.user || req.session.user.role !== 'owner') {
@@ -68,6 +71,5 @@ router.get('/mydogs', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
-
 
 module.exports = router;
