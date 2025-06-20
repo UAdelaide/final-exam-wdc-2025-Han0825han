@@ -98,15 +98,14 @@
           }
         }
 
-        
 
-        async function loadWalks() {
-          try {
-            const res = await fetch('/api/walks');
-            walks.value = await res.json();
-          } catch (err) {
-            error.value = 'Failed to load walk requests';
-          }
+
+        async function applyToWalk(requestId) {
+        const walkerId = await getCurrentUser(); // 获取用户 ID
+
+        if (!walkerId) {
+          error.value = 'User not logged in';
+          return;
         }
 
         async function loadDogs() {
