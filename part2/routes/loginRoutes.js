@@ -34,19 +34,21 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ✅ Logout route: destroys session and redirects to login form
+// Logout route: destroy session, clear cookie, and redirect to login page
 router.get('/logout', (req, res) => {
-  req.session.destroy(err => {
+  req.session.destroy((err) => {
     if (err) {
+      // Log server-side error and inform user
       console.error('Failed to destroy session:', err);
       return res.status(500).send('Logout failed');
     }
 
-    // Clear the cookie and redirect to login page
-    res.clearCookie('connect.sid'); // session cookie name
-    res.redirect('/index.html');    // login page
+    // Clear cookie and redirect to login form
+    res.clearCookie('connect.sid'); // 'connect.sid' is default session cookie name
+    return res.redirect('/index.html'); // redirect to login page
   });
 });
+
 
 
 
