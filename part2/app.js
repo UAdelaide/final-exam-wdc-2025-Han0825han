@@ -1,4 +1,3 @@
-const loginRoutes = require('./routes/loginRoutes');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -19,9 +18,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
-
+const loginRoutes = require('./routes/loginRoutes');
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
+app.use('/', loginRoutes);
 
-// Export the app instead of listening here
+// Export the app
 module.exports = app;
