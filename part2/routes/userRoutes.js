@@ -72,6 +72,16 @@ router.get('/mydogs', async (req, res) => {
   }
 });
 
+router.get('/dogs', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT dog_id, name, size, owner_id FROM Dogs');
+    res.json(rows);
+  } catch (err) {
+    console.error('Error fetching dogs:', err);
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
+
 
 
 module.exports = router;
