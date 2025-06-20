@@ -65,6 +65,7 @@ console.log("🐶 当前 session 用户：", req.session.user);
       'SELECT dog_id, name FROM Dogs WHERE owner_id = ?',
       [req.session.user.id]
     );
+console.log("🦴 返回的狗狗列表:", dogs);
 
     res.json(dogs);
   } catch (err) {
