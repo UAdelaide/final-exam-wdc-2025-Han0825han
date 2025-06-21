@@ -73,7 +73,7 @@ app.get('/api/walkers/summary', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('✅ Express is running!');
+  res.send(' Express is running!');
 });
 
 
