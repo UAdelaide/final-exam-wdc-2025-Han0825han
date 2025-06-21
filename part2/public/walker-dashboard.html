@@ -73,7 +73,7 @@
         }
 
         async function applyToWalk(requestId) {
-          const walkerId = await getCurrentUser();  // 获取动态 ID
+          const walkerId = await getCurrentUser(); 
           if (!walkerId) return;
 
           try {
